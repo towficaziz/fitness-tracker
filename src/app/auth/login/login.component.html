@@ -1,31 +1,25 @@
-<section class="signup-form">
-  <form fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center center" #fl="ngForm" (ngSubmit)="onSubmitLog(fl)">
+<section>
+  <form
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap="15px"
+  [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
     <mat-form-field>
-      <input
-      type="email"
+      <input type="email"
       matInput
       placeholder="Your email"
-      ngModel
-      name="email"
-      email
-      required
-      #emailInput="ngModel" >
-      <mat-error *ngIf="emailInput.hasError('required')">Field must not be emplty.</mat-error>
-      <mat-error *ngIf="!emailInput.hasError('required')">E-mail is invalid.</mat-error>
+      formControlName="email" >
+      <mat-hint>Please enter a valid email.</mat-hint>
+      <mat-error>Invalid or missing email.</mat-error>
     </mat-form-field>
-    <mat-form-field hintLabel="Should be at least 6 characters long.">
-      <input
-      type="password"
+    <mat-form-field>
+      <input type="password"
       matInput
       placeholder="Your password"
-      ngModel
-      name="password"
-      required
-      minlength="6"
-      #pwInput="ngModel" >
-      <mat-hint align="end">{{pwInput.value.length}} / 6</mat-hint>
-      <mat-error>Has to be at least 6 charecters long.</mat-error>
+      formControlName="password" >
+      <mat-hint>Please enter your valid password.</mat-hint>
+      <mat-error>Missing password.</mat-error>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary" [disabled]="fl.invalid">Submit</button>
+    <button type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Submit</button>
   </form>
 </section>
