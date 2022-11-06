@@ -7,7 +7,7 @@
 
   <ng-container matColumnDef="data">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element.date | date}}</mat-cell>
+    <mat-cell *matCellDef="let element">{{element.date.toDate() | date}}</mat-cell> <!--  date :'short' -->
   </ng-container>
 
   <ng-container matColumnDef="name">
@@ -34,5 +34,5 @@
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
 
-<mat-paginator [pageSize]="1" [pageSizeOptions]="[1, 5, 10, 20]">
+<mat-paginator [pageSize]="1" [pageSizeOptions]="[1,5, 10, 20]">
 </mat-paginator>
