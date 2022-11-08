@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "ng-fitness-tracker-1a224",
+    "fitness": "ng-fitness-tracker-1a224"
+  },
+  "targets": {},
+  "etags": {}
+}
