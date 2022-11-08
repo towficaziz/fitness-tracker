@@ -4,20 +4,20 @@
 
 
 export const environment = {
-  production: false
-  ,
+  production: true,
   firebase :{
-    apiKey: "AIzaSyBjyTLYZsh2FvZ4vA66GHxd6LFbJH_GWNY",
+    apiKey: "AIzaSyCyGiQqhzYwzaZWh8LXe7yAGL0C6ZfZ0oU",
 
-  authDomain: "ng-fitness-tracker-bad5e.firebaseapp.com",
+  authDomain: "ng-fitness-tracker-1a224.firebaseapp.com",
 
-  projectId: "ng-fitness-tracker-bad5e",
+  projectId: "ng-fitness-tracker-1a224",
 
-  storageBucket: "ng-fitness-tracker-bad5e.appspot.com",
+  storageBucket: "ng-fitness-tracker-1a224.appspot.com",
 
-  messagingSenderId: "775222062425",
+  messagingSenderId: "82283719316",
 
-   appId: "1:775222062425:web:c951fbcc226fdd53847048"
+  appId: "1:82283719316:web:62a84c713dc8209d21a281"
+
 
   }
 };
