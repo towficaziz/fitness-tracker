@@ -25,6 +25,7 @@ private fbSubs: Subscription[] = [];
     .collection('availableExercises')
     .snapshotChanges()
     .pipe(map((docArray: any) => {
+      // throw(new Error());
       return docArray.map((doc: any) => {
         return {
           id: doc.payload.doc.id,
@@ -38,6 +39,11 @@ private fbSubs: Subscription[] = [];
       this.uiService.loadingStateChanged.next(false);
       this.availableExercises = exercises;
       this.exercisesChanged.next([...this.availableExercises]);
+    }, error =>{
+      this.uiService.loadingStateChanged.next(false);
+      this.uiService.showSnackbar(
+        'Fetching Exercises Failed!, Please try again later', null!, 300);
+        this.exercisesChanged.next(null!);
     }));
   }
 
