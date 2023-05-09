@@ -6,6 +6,7 @@ import { PastTrainingsComponent } from "./past-trainings/past-trainings.componen
 import { TrainingComponent } from "./training.component";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { SharedModule } from "../shared/shared.module";
+import { TrainingRoutingModule } from "./training-routing.module";
 
 @NgModule({
   declarations:[
@@ -17,7 +18,7 @@ import { SharedModule } from "../shared/shared.module";
   ],
   imports:[
     SharedModule,
-    AngularFireAuthModule,
+    TrainingRoutingModule
   ],
   exports:[],
   entryComponents: [StopTrainingComponent]
