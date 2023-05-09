@@ -25,6 +25,7 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 // import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { UIService } from './shared/ui.service';
 
 
 
@@ -54,7 +55,7 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
      AngularFireModule.initializeApp(environment.firebase),
      AngularFireAuthModule
   ],
-  providers: [AuthService, TrainingService],
+  providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
 })
