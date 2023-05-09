@@ -18,9 +18,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService, private uiService: UIService) { }
 
-  ngOnDestroy() {
-    this.loadingSubs.unsubscribe();
-  }
 
   ngOnInit() {
     this.loadingSubs = this.uiService.loadingStateChanged.subscribe(isLoading =>{
@@ -42,5 +39,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
   });
+  }
+  ngOnDestroy() {
+    if(this.loadingSubs){
+      this.loadingSubs.unsubscribe();
+    }
   }
 }
