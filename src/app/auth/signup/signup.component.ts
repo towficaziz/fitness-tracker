@@ -16,9 +16,6 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService, private uiService: UIService) { }
 
-  ngOnDestroy() {
-    this.loadingSubs.unsubscribe();
-  }
 
   ngOnInit() {
     this.loadingSubs = this.uiService.loadingStateChanged.subscribe(isLoading =>{
@@ -33,5 +30,10 @@ export class SignupComponent implements OnInit, OnDestroy {
       email: form.value.email,
       password: form.value.password
   });
+  }
+  ngOnDestroy() {
+    if(this.loadingSubs){
+      this.loadingSubs.unsubscribe();
+    }
   }
 }
