@@ -19,7 +19,7 @@ import { UIService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from './app.reducer';
+import { reducers } from './app.reducer';
 
 
 
@@ -40,7 +40,7 @@ import { appReducer } from './app.reducer';
     AuthModule,
     AngularFirestoreModule,
     // StoreModule.forRoot(appReducer),
-    StoreModule.forRoot({ ui: appReducer })
+    StoreModule.forRoot(reducers )
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent]

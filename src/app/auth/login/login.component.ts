@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UIService } from 'src/app/shared/ui.service';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import * as fromApp from '../../app.reducer';
+import * as formRoot from '../../app.reducer';
 import { Observable } from 'rxjs-compat';
 import { state } from '@angular/animations';
 
@@ -21,11 +21,12 @@ export class LoginComponent implements OnInit {
   isLoading$!: Observable<boolean>;
   private loadingSubs!: Subscription;
 
-  constructor(private authService: AuthService, private uiService: UIService, private store: Store<{ui: fromApp.State}>) { }
+  constructor(private authService: AuthService, private uiService: UIService,
+    private store: Store<{ui: formRoot.State}>) { }
 
 
   ngOnInit() {
-    this.isLoading$ = this.store.map(state => state.ui.isLoading);
+    this.isLoading$ = this.store.select(formRoot.getIsLoading);
     // this.loadingSubs = this.uiService.loadingStateChanged.subscribe(isLoading =>{
     //   this.isLoading = isLoading;
     // });
