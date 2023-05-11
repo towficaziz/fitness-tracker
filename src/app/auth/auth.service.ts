@@ -1,4 +1,5 @@
 import { TrainingService } from './../training/training.service';
+
 import { AuthData } from "./auth-data.model";
 import { User } from "./user.model";
 
@@ -9,7 +10,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UIService } from '../shared/ui.service';
 import { Store } from '@ngrx/store';
-import * as formRoot from '../app.reducer';
+import * as fromRoot from '../app.reducer';
 import * as UI from '../shared/ui.actions';
 
 @Injectable()
@@ -22,7 +23,7 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private trainingService: TrainingService,
     private uiService: UIService,
-    private store: Store<{ui: formRoot.State}>
+    private store: Store<{ui: fromRoot.State}>
     ){}
 
     initAuthListener(){
