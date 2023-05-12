@@ -22,8 +22,8 @@ export function authReducer(state = initialState, action: AuthActions){
 
     case SET_UNAUTHENTICATED:
       return {
-        isAuthenticated: false,
-        isUnauthenticated: true
+        isAuthenticated: true,
+        isUnauthenticated: false
       };
 
     default:
@@ -32,3 +32,34 @@ export function authReducer(state = initialState, action: AuthActions){
 };
 
 export const getIsAuth = (state: State) => state.isAuthenticated;
+
+
+/*
+export interface State{
+  isAuthenticated: boolean;
+  // isUnauthenticated: boolean;
+}
+
+const initialState: State ={
+  isAuthenticated: false,
+  // isUnauthenticated: false
+};
+
+export function authReducer(state = initialState, action: AuthActions){
+  switch(action.type){
+    case SET_AUTHENTICATED:
+      return {
+        isAuthenticated: true,
+        // isUnauthenticated: false
+      };
+
+    case SET_UNAUTHENTICATED:
+      return {
+        // isAuthenticated: true,
+        isUnauthenticated: false
+      };
+
+    default:
+      return state;
+  }
+}; */
