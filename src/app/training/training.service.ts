@@ -1,3 +1,4 @@
+import { StartLoading } from './../shared/ui.actions';
 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from "@angular/core";
@@ -22,13 +23,16 @@ private fbSubs: Subscription[] = [];
 
   private runningExercise: Exercise ;
 
-  constructor(private db: AngularFirestore, private uiService: UIService,
-    private store: Store<fromTraining.State>){}
+  constructor(private db: AngularFirestore,
+    private uiService: UIService,
+    private store: Store<fromTraining.State>
+    ){}
 
   fetchAvailableExercises(){
     this.store.dispatch(new UI.StartLoading());
     // this.uiService.loadingStateChanged.next(true);
-    this.fbSubs.push( this.db
+    this.fbSubs.push(
+      this.db
     .collection('availableExercises')
     .snapshotChanges()
     .pipe(map((docArray: any) => {
@@ -83,7 +87,8 @@ private fbSubs: Subscription[] = [];
   }
 
   fetchCompletedOrCancelledExercises(){
-    this.fbSubs.push( this.db
+    this.fbSubs.push(
+    this.db
     .collection('finishedExercises')
     .valueChanges()
     .subscribe((exercises: Exercise[])=>{

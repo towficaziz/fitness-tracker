@@ -33,5 +33,6 @@ export class StopActiveTraining implements Action{
 
 }
 
-export type TrainingActions = SetAvailableTrainings | SetFinishedTrainings |
+export type TrainingActions =
+SetAvailableTrainings | SetFinishedTrainings |
   StartActiveTraining | StopActiveTraining;

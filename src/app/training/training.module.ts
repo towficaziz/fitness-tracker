@@ -23,7 +23,6 @@ import { trainingReducer } from "./training.reducer";
     TrainingRoutingModule,
     StoreModule.forFeature('training', trainingReducer)
   ],
-  exports:[],
   entryComponents: [StopTrainingComponent]
 })
 export class TrainingModule{}
