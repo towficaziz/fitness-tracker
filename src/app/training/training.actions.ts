@@ -24,7 +24,7 @@ export class SetFinishedTrainings implements Action{
 export class StartActiveTraining implements Action{
   readonly type = START_ACTIVE_TRAINING;
 
-  constructor(public payload: Exercise){ }
+  constructor(public payload: string){ }
 
 }
 
