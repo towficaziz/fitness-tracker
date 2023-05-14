@@ -1,8 +1,6 @@
-import { StartLoading } from './../shared/ui.actions';
-
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from "@angular/core";
-import { map, Subject, Subscription, take } from "rxjs";
+import { map, Subscription, take } from "rxjs";
 
 import { Exercise } from "./exercise.model";
 import { UIService } from '../shared/ui.service';
@@ -14,14 +12,8 @@ import { Store } from '@ngrx/store';
 
 @Injectable()
 export class TrainingService{
-exerciseChanged = new Subject<Exercise>();
-
-exercisesChanged = new Subject<Exercise[]>();
-finishedExercisesChanged = new Subject<Exercise[]>();
-private availableExercises: Exercise[] = [];
 private fbSubs: Subscription[] = [];
 
-  private runningExercise: Exercise ;
 
   constructor(private db: AngularFirestore,
     private uiService: UIService,
@@ -30,13 +22,11 @@ private fbSubs: Subscription[] = [];
 
   fetchAvailableExercises(){
     this.store.dispatch(new UI.StartLoading());
-    // this.uiService.loadingStateChanged.next(true);
     this.fbSubs.push(
       this.db
     .collection('availableExercises')
     .snapshotChanges()
     .pipe(map((docArray: any) => {
-      // throw(new Error());
       return docArray.map((doc: any) => {
         return {
           id: doc.payload.doc.id,
@@ -52,8 +42,7 @@ private fbSubs: Subscription[] = [];
     }, error =>{
       this.store.dispatch(new UI.StopLoading());
       this.uiService.showSnackbar(
-        'Fetching Exercises Failed!, Please try again later', null!, 300);
-        this.exercisesChanged.next(null!);
+        'Fetching Exercises Failed!, Please try again later', null, 300);
     }));
   }
 
@@ -93,7 +82,6 @@ private fbSubs: Subscription[] = [];
     .collection('finishedExercises')
     .valueChanges()
     .subscribe((exercises: Exercise[])=>{
-      // this.finishedExercisesChanged.next(exercises);
       this.store.dispatch(new Training.SetFinishedTrainings(exercises));
     }));
   }

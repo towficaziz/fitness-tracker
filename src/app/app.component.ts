@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  // openSidenav = false;
   constructor(private authService: AuthService){}
 
   ngOnInit() {

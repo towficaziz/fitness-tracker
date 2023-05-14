@@ -17,7 +17,6 @@ import * as fromTraining from '../training.reducer';
 export class NewTrainingComponent implements OnInit {
 
   exercises$: Observable<Exercise[]>;
-  // private exerciseSubscription!: Subscription;
   isLoading$: Observable<boolean>;
 
 
@@ -25,7 +24,6 @@ export class NewTrainingComponent implements OnInit {
     private uiService: UIService,
     private store: Store<fromTraining.State>
     ) { }
-  // , private db: AngularFirestore
   ngOnInit() {
 
     this.isLoading$ = this.store.select(formRoot.getIsLoading);
