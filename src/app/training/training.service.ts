@@ -2,7 +2,7 @@ import { StartLoading } from './../shared/ui.actions';
 
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Injectable } from "@angular/core";
-import { map, Subject, Subscription } from "rxjs";
+import { map, Subject, Subscription, take } from "rxjs";
 
 import { Exercise } from "./exercise.model";
 import { UIService } from '../shared/ui.service';
@@ -63,27 +63,28 @@ private fbSubs: Subscription[] = [];
   }
 
   completeExercise(){
-    this.addDataToDatabase({
-      ...this.runningExercise,
-      date: new Date(),
-      state: 'completed'
-    });
-    this.store.dispatch(new Training.StopActiveTraining());
+    this.store.select(fromTraining.getActiveTraining).pipe(take(1)).subscribe(ex =>{
+      this.addDataToDatabase({
+        ...ex,
+        date: new Date(),
+        state: 'completed'
+      });
+      this.store.dispatch(new Training.StopActiveTraining());
+    })
+
   }
 
   cancelExercise(progress: number){
-    this.addDataToDatabase({
-    ...this.runningExercise,
-    duration: this.runningExercise!.duration! * (progress / 100),
-    calories: this.runningExercise!.calories! * (progress / 100),
-    date: new Date(),
-    state:'cancelled'
-  });
-  this.store.dispatch(new Training.StopActiveTraining());
-  }
-
-  getRunningExercise(){
-    return { ...this.runningExercise};
+    this.store.select(fromTraining.getActiveTraining).pipe(take(1)).subscribe(ex =>{
+      this.addDataToDatabase({
+        ...ex,
+        duration: ex.duration! * (progress / 100),
+        calories: ex.calories! * (progress / 100),
+        date: new Date(),
+        state: 'cancelled'
+      });
+      this.store.dispatch(new Training.StopActiveTraining());
+    });
   }
 
   fetchCompletedOrCancelledExercises(){
